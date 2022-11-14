@@ -7,8 +7,8 @@ Basically a self hosted PHP script.
 
 ## Install
 
-```
-cd <your_webroot_directory>
+```bash
+cd <your_webroot_directory> # cd /var/www/html/x.example.com/
 git clone https://github.com/gwen001/bxss
 ```
 
