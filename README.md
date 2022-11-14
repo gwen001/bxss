@@ -8,7 +8,6 @@ Basically a self hosted PHP script.
 ## Install
 
 ```bash
-cd <your_webroot_directory> # cd /var/www/html/x.example.com/
 git clone https://github.com/gwen001/bxss
 ```
 
@@ -23,7 +22,7 @@ Using Apache, you can configure a vhost like this:
 <VirtualHost *:443>
 	ServerName x.example.com
 	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/html/x.example.com/
+	DocumentRoot /var/www/html/bxss/
 	SSLCertificateFile /etc/letsencrypt/live/x.example.com/fullchain.pem
 	SSLCertificateKeyFile /etc/letsencrypt/live/x.example.com/privkey.pem
 </VirtualHost>
@@ -32,6 +31,6 @@ Using Apache, you can configure a vhost like this:
 <VirtualHost *:80>
 	ServerName x.example.com
 	ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/html/x.example.com/
+	DocumentRoot /var/www/html/bxss/
 </VirtualHost>
 ```
