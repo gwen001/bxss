@@ -21,7 +21,7 @@ The web user should have write access on the directory `images`.
 
 ## Apache
 
-Using Apache, you can configure a vhost like this:
+Using Apache, you can easily configure a vhost like this:
 
 ```
 <IfModule mod_ssl.c>
