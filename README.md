@@ -1,6 +1,6 @@
 <h1 align="center">bxss</h1>
 
-<h4 align="center">My alternative to [XSS Hunter](https://xsshunter.com/) to find blind XSS.</h4>
+<h4 align="center">My alternative to XSS Hunter to find blind XSS.</h4>
 
 <p align="center">
     <img src="https://img.shields.io/badge/php-%3E=5.5-blue" alt="php badge">
