@@ -40,3 +40,8 @@ Using Apache, you can easily configure a vhost like this:
 	DocumentRoot /var/www/html/bxss/
 </VirtualHost>
 ```
+
+---
+
+Feel free to [open an issue](/../../issues/) if you have any problem with the script.  
+
