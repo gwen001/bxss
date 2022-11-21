@@ -16,6 +16,16 @@
 
 ---
 
+## Features
+
+- reports stored in `sqlite` database
+- call logged in log file
+- data collected: 
+    - vulnerable URL
+    - referer URL
+    - victim IP, victim User-Agent, victim cookies, victim locale storage, HTML of the vulnerable page, screenshot of the vulnerable page
+
+
 ## Install
 
 ```
@@ -24,7 +34,7 @@ git clone https://github.com/gwen001/bxss
 
 The web user should have write access on the directory `images`.
 
-## Apache
+## Configure domain
 
 Using Apache, you can easily configure a vhost like this:
 
