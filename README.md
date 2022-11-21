@@ -20,7 +20,7 @@
 
 - reports stored in `sqlite` database
 - call logged in log file
-- report send on Slack channel (beta)
+- reports send on Slack channel (beta)
 - data collected: 
     - vulnerable URL
     - referer URL
@@ -32,7 +32,7 @@
     - screenshot of the vulnerable page
 
 Todo:  
-- report send by mail
+- reports send by mail
 
 ## Install
 
