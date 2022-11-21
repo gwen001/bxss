@@ -31,6 +31,9 @@
     - HTML of the vulnerable page
     - screenshot of the vulnerable page
 
+Todo:
+    - report send by mail
+
 ## Install
 
 ```
