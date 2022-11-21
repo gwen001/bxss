@@ -20,11 +20,16 @@
 
 - reports stored in `sqlite` database
 - call logged in log file
+- report send on Slack channel (beta)
 - data collected: 
     - vulnerable URL
     - referer URL
-    - victim IP, victim User-Agent, victim cookies, victim locale storage, HTML of the vulnerable page, screenshot of the vulnerable page
-
+    - victim IP
+    - victim User-Agent
+    - victim cookies
+    - victim locale storage
+    - HTML of the vulnerable page
+    - screenshot of the vulnerable page
 
 ## Install
 
