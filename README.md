@@ -32,7 +32,7 @@
     - screenshot of the vulnerable page
 
 Todo:  
-    - report send by mail
+- report send by mail
 
 ## Install
 
